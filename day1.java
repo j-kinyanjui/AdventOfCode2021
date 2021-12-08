@@ -14,6 +14,18 @@ class Scratch {
 
          return count.get();
     }
+    
+    public int findNumberOfIncreasesSlidingWindow(int[] input, int window) {
+
+        ArrayList<Integer> sumOfThree = new ArrayList<>();
+
+        int inputLength = input.length;
+        IntStream.rangeClosed(0, inputLength - window).boxed()
+                .forEach(current -> sumOfThree.add((input[current] + input[current + 1] + input[current + 2])));
+
+        int[] array = sumOfThree.stream().mapToInt(j -> j).toArray();
+        return findNumberOfIncreases(array);
+    }
 
     public static void main(String[] args) throws FileNotFoundException {
 
